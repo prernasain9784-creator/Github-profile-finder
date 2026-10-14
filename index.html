@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GitHub Profile Finder</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="header">
+        <div>
+            <h1>GitHub Profile Finder</h1>
+            <p>Explore GitHub developers and repositories</p>
+        </div>
+
+        <button id="battleToggle" class="secondary" type="button"
+                aria-expanded="false">
+            ⚔ Battle Mode
+        </button>
+    </header>
+
+    <main class="container">
+
+        <!-- Phase 1: Profile Search -->
+        <section class="panel">
+            <h2>Find a GitHub Developer</h2>
+            <p>Enter a GitHub username to explore the profile.</p>
+
+            <form id="searchForm" class="search-form">
+                <label class="sr-only" for="username">
+                    GitHub username
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="e.g. torvalds"
+                    maxlength="39"
+                    autocomplete="off"
+                    required
+                >
+
+                <button id="searchButton" type="submit">
+                    Search Profile
+                </button>
+            </form>
+
+            <p id="message" class="message"
+               role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Phase 1 and Phase 2 -->
+        <section id="profileSection" class="profile-layout" hidden>
+
+            <article class="panel profile-card">
+
+                <div class="profile-top">
+                    <img id="avatar" class="avatar" src="" alt="GitHub avatar">
+
+                    <div>
+                        <h2 id="name"></h2>
+                        <p id="userName" class="muted"></p>
+                        <p id="bio"></p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div>
+                        <span>Public Repositories</span>
+                        <strong id="repositories">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Followers</span>
+                        <strong id="followers">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Following</span>
+                        <strong id="following">0</strong>
+                    </div>
+                </div>
+
+                <p class="muted">
+                    Joined GitHub: <strong id="joinDate"></strong>
+                </p>
+
+                <a id="profileLink"
+                   class="profile-link"
+                   href="#"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Open GitHub Profile ↗
+                </a>
+
+            </article>
+
+            <!-- Phase 2: Repository Details -->
+            <section class="panel">
+                <h2>Recent Repositories</h2>
+
+                <p class="muted">
+                    Latest updated public repositories
+                </p>
+
+                <p id="repositoryMessage" class="message"></p>
+
+                <div id="repositoryList" class="repository-list"></div>
+            </section>
+
+        </section>
+
+        <!-- Phase 3: Battle Mode -->
+        <section id="battleForm" class="panel battle-panel" hidden>
+
+            <p class="eyebrow">PHASE 3</p>
+
+            <h2>Developer Battle</h2>
+
+            <p class="muted">
+                Compare two developers using the total stars
+                of their public repositories.
+            </p>
+
+            <form id="compareForm" class="battle-form">
+
+                <label>
+                    First GitHub Username
+
+                    <input
+                        id="usernameOne"
+                        type="text"
+                        placeholder="e.g. torvalds"
+                        maxlength="39"
+                        required
+                    >
+                </label>
+
+                <span class="versus">VS</span>
+
+                <label>
+                    Second GitHub Username
+
+                    <input
+                        id="usernameTwo"
+                        type="text"
+                        placeholder="e.g. gaearon"
+                        maxlength="39"
+                        required
+                    >
+                </label>
+
+                <button id="battleButton" type="submit">
+                    Compare Developers
+                </button>
+
+            </form>
+
+            <p id="battleMessage" class="message"
+               role="status" aria-live="polite"></p>
+
+            <div id="battleResults" hidden>
+                <div id="battleSummary" class="battle-summary"></div>
+                <div id="battleCards" class="battle-cards"></div>
+            </div>
+
+        </section>
+
+        <footer>
+            Data provided by the public GitHub REST API.
+            An internet connection is required.
+        </footer>
+
+    </main>
+
+</body>
+</html>
